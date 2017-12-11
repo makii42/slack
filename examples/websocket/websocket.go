@@ -17,7 +17,7 @@ func main() {
 	rtm := api.NewRTM()
 	go rtm.ManageConnection()
 
-	for msg := range rtm.IncomingEvents {
+	for msg := range rtm.Incoming() {
 		fmt.Print("Event Received: ")
 		switch ev := msg.Data.(type) {
 		case *slack.HelloEvent:

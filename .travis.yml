@@ -1,4 +1,5 @@
 language: go
+go_import_path: github.com/nlopes/slack
 
 go:
     - 1.7

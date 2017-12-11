@@ -74,14 +74,14 @@ func (api *Client) ConnectRTMContext(ctx context.Context) (info *Info, websocket
 
 // NewRTM returns a RTM, which provides a fully managed connection to
 // Slack's websocket-based Real-Time Messaging protocol.
-func (api *Client) NewRTM() *RTM {
+func (api *Client) NewRTM() Realtime {
 	return api.NewRTMWithOptions(nil)
 }
 
 // NewRTMWithOptions returns a RTM, which provides a fully managed connection to
 // Slack's websocket-based Real-Time Messaging protocol.
 // This also allows to configure various options available for RTM API.
-func (api *Client) NewRTMWithOptions(options *RTMOptions) *RTM {
+func (api *Client) NewRTMWithOptions(options *RTMOptions) Realtime {
 	result := &RTM{
 		Client:           *api,
 		IncomingEvents:   make(chan RTMEvent, 50),

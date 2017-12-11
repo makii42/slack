@@ -45,6 +45,18 @@ type RTM struct {
 	useRTMStart bool
 }
 
+// Realtime is the interface to the RTM client.
+type Realtime interface {
+	Disconnect() error
+	GetInfo() *Info
+	ManageConnection()
+	NewOutgoingMessage(text string, channel string) *OutgoingMessage
+	NewTypingMessage(channel string) *OutgoingMessage
+	Reconnect() error
+	SendMessage(msg *OutgoingMessage)
+	Incoming() chan RTMEvent
+}
+
 // RTMOptions allows configuration of various options available for RTM messaging
 //
 // This structure will evolve in time so please make sure you are always using the
@@ -90,4 +102,8 @@ func (rtm *RTM) SendMessage(msg *OutgoingMessage) {
 	}
 
 	rtm.outgoingMessages <- *msg
+}
+
+func (rtm *RTM) Incoming() chan RTMEvent {
+	return rtm.IncomingEvents
 }

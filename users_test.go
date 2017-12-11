@@ -145,7 +145,7 @@ func TestUserCustomStatus(t *testing.T) {
 	testUnsetUserCustomStatus(api, up, t)
 }
 
-func testSetUserCustomStatus(api *Client, up *UserProfile, t *testing.T) {
+func testSetUserCustomStatus(api Slack, up *UserProfile, t *testing.T) {
 	const (
 		statusText  = "testStatus"
 		statusEmoji = ":construction:"
@@ -164,7 +164,7 @@ func testSetUserCustomStatus(api *Client, up *UserProfile, t *testing.T) {
 	}
 }
 
-func testUnsetUserCustomStatus(api *Client, up *UserProfile, t *testing.T) {
+func testUnsetUserCustomStatus(api Slack, up *UserProfile, t *testing.T) {
 	if err := api.UnsetUserCustomStatus(); err != nil {
 		t.Fatalf(`UnsetUserCustomStatus() = %#v, want <nil>`, err)
 	}
